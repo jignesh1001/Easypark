@@ -1,0 +1,372 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}main{% endblock title %}
+{% block body %}
+
+<link rel="stylesheet" href="{% static '/css/main.css' %}">
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+crossorigin="anonymous"
+referrerpolicy="no-referrer"
+/>
+<style>
+#createProfile{
+  width: 100vw;
+  background-color:#0d6efd;
+}
+
+
+/*  owner account = card body */
+.book_card_body {
+ border-radius: 19px;
+  border: 2px solid white;
+  width: 20% !important;
+  height: 401px;
+  margin: 20px 0px 20px 0px;
+  background: #d34d4d;
+}
+
+.card_info {
+    width: 100%;
+    justify-content: center;
+    color: white;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    font-size: 1.3rem;
+}
+.del_btn ,.btn_fslot{
+  color: #fff;
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  position: relative;
+  top: 22%;
+}
+
+
+
+/* customer card for searching the parking slot */
+.customer_div {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: whitesmoke;
+    height: 460px;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+}
+
+    .request_accept{
+      color: whitesmoke;
+    }
+    /* check customer details  */
+ .customer_Profile{  
+  background-color: transparent;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border: none;
+}
+.customer_Profile>i{
+ 
+    color: #686668;
+    font-size: 2.1rem;
+}
+
+.customer_Profile>i:hover{
+  color: #FFFFFF;
+/* background: #ece9e9; */
+text-shadow: 3px 5px 2px #474747;
+}
+</style>
+<!-- Add slot section -->
+<div class="box d-flex justify-content-center align-items-center flex-column">
+  
+
+    
+  
+  {% comment %} <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+    {% endcomment %}
+ {% comment %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+      {{message}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      </button>
+    </div>
+    {% endfor %}
+    {% endif %} {% endcomment %}
+ {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+      {{message}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% for ut in type %}
+    {% if ut.usertype == 'O' %}
+    <img src="{% static '/images/owner/bg5.jpeg'%}"alt="">
+    <div class="container  ">
+    <div class="d-flex justify-content-center align-items-center text-light flex-column mt-5 mb-2 w-100 h-100">
+     <h1 class="mt-5">Hello {{ut.user}},</h1>
+      <h1>Lets Work together</h1>
+  </div>
+
+
+    <div class="addSlot d-flex justify-content-center align-items-center  flex-column text-light w-100 text-capitalize">
+    <h4 class="fw-bolder mt-3">Add Slot</h4>
+<form action='/addinfo' method='POST' class="d-flex flex-column justyfy-content-center align-items-center w-100  mb-5">
+      {% csrf_token %}
+      {% comment %} <div class="my-1  w-50 ">
+        <label for="exampleInputPassword1 text-capitalize" class="form-label">phone Number</label>
+        <input type="number" name='phone' class="form-control  owner-inp "  id="exampleInputPassword1">
+      </div> {% endcomment %}
+ 
+      <div class="my-2 w-50">
+        <label for="exampleInputPassword2 text-capitalize" class="form-label">Enter no of slots </label>
+        <input type="number" name='no_of_slots' class="form-control owner-inp my-2 "  id="exampleInputPassword2">
+      </div>
+      <div class="my-2 w-50">
+        <label for="exampleInputPassword3 text-capitalize" class="form-label">Prices </label>
+        <input type="number" name='prices' class="form-control owner-inp my-2 "  id="exampleInputPassword3 ">
+      </div>
+      <div class="my-2 w-50">
+        <label for="exampleInputPassword3 text-capitalize" class="form-label">Date </label>
+        <input type="date" name='date' class="form-control owner-inp my-2 "  id="exampleInputPassword3 ">
+      </div>
+      <div class="my-2 w-50">
+        <label for="exampleInputPassword3 text-capitalize" class="form-label">Time </label>
+        <input type="Time" name='time' class="form-control owner-inp my-2 "  id="exampleInputPassword3 ">
+      </div>
+
+      <select class="form-select w-50 owner-inp "  name='city' aria-label="Default select example">
+        <option selected>Select City</option>
+        <option value="Mumbai">Mumbai</option>
+        <option value="Delhi">Delhi</option>
+        <option value="Kolkata">Kolkata</option>
+        <option value="Chennai">Chennai</option>
+        <option value="Hyderabad">Hyderabad</option>
+        <option value="banglore">banglore</option>
+        <option value="rajasthan">rajasthan</option>
+        <option value="Punjab">Punjab</option>
+        <option value="Gujrat">Gujrat</option>
+        <option value="Lucknow">Lucknow</option>
+      </select>
+      <div class="my-2 w-50">
+        <label for="exampleInputEmail1 text-capitalize my-3" name='address' class="form-label">Enter address</label>
+        <input type="text" name='address' class="form-control owner-inp "  id="exampleInputEmail" aria-describedby="emailHelp">
+      </div>
+      {% comment %} <div class="my-2 w-50">
+        <label for="exampleInputEmail1 text-capitalize my-3" name='address' class="form-label">Enter Phone Number</label>
+        <input type="text" name='address' class="form-control owner-inp "  id="exampleInputEmail" aria-describedby="emailHelp">
+      </div> {% endcomment %}
+      <div class="text-center text-capitalize my-3">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+  </div>
+</div>
+
+
+<!-- Owner slots card -->
+
+<div class="text-center ">
+  <div class="spot_div py-4">
+<h2>Your Spots</h2>
+<div class="owner_card_container " >
+
+
+  {% for spot in selfspots%}
+
+    <!-- <div class="card w-50 card_size "> -->
+      
+      <div class=" card owner_card ">
+        <form action="/main" method="post" class="card-body">
+          {% csrf_token %}
+          <h5 class="card-title">Name : {{spot.name}}</h5>
+          <p class="card-text">Address : {{spot.address}}</p>
+          <p class = "card-text"> Number of spots : {{spot.no_of_slots}}</p>
+          <p class = "card-text"> Price per slot : {{spot.prices}}</p>
+          {% comment %} <p class = "card-text"> Total Amount : {{ spot.no_of_slots }} * {{ spot.prices}}</p> {% endcomment %}
+          <a href="/delete_spot/{{spot.id}}" class="btn btn-primary del_btn">Delete</a>
+        </form>
+      </div>
+
+    <!-- </div> -->
+
+  {%endfor%}
+</div>
+</div>
+
+
+<!-- request for slots -->
+<div class=" customer-request">
+
+
+  <h2 class="py-5">Your Customers Will be Displayed Here</h2>
+  {% for customers in allcustomers%}
+  <div class="col d-flex justify-content-center py-4 border-4">
+    <div class="card w-75">
+      <div class="card-body">
+        <h5 class="card-title">Name : {{customers.customer}}</h5>
+        <h5 class="card-title">Your location requested : {{customers.spot}}</h5>
+        <p class="card-text">Date:{{customers.date}}</p>
+        <p class="card-text">Date:{{customers.time}}</p>
+
+        <a href="/accept/{{customers.key_num}}" class="btn btn-success">Accept</a>
+        <a href="/decline/{{customers.key_num}}" class="btn btn-danger">Decline</a>
+      </div>
+    </div>
+  </div>
+  {%endfor%}
+</div>
+
+  <!-- book slot card -->
+
+<div class="book-slot ">
+
+
+  <h2 style="text-align: center;">Your Accepted Customers will be displayed here</h2>
+  <div class="card_container acceptCard_container">
+
+
+  {%for concustomer in allconcustomers%}
+  
+
+  <div class="card book_card_body ">
+    
+      <div class="card_info">
+      <h5 class="card-title">{{concustomer.customer}}</h5>
+      <p class="card-text">{{concustomer.date}}</p>
+      <p class="card-text">{{concustomer.time}}</p>
+      <a href="/free_slot/{{concustomer.key_num}}"><button type="submit" class="btn btn-primary btn_fslot">free slot</button></a>
+    </div>
+    
+  </div>
+
+  {%endfor%}
+</div>
+</div>
+
+  
+</div>
+<!-- customer page  -->
+
+{% else %}
+<div class="customer_div">
+  <h1 class="c-h1">   Hello,</h1>
+  <h1 class="c-h1">{{ut.user}}</h1>
+  
+  <div class="info">
+    <h3>Discover amazing space </h3>
+
+   
+  </div>
+
+
+	
+<form>
+  <div class="input-group">
+    <i class="fa fa-map-marker"></i>
+      <input name="q" type="text" placeholder="Search City" class=" form-control form-control-lg "style="border:none;"  />
+      <div class="input-group-append">
+          <button class="btn btn-dark btn-lg search_btn">Find Parking <i class="fa fa-search"></i></button>
+      </div>
+  </div>
+</form>
+
+</div>
+<div class="text-center">
+
+  {% if flag == 'T' %}
+  <!-- <a href="/profile"><button class="cprofile">Check Profile</button></a> -->
+  <section class="parking_slot">
+  <div class="pslot card-Container">
+  {% for owner in allowners%}
+ <!-- <div class="container my-4 pslot-con"> -->
+    <div class="card border-5 card_border ">
+      <h5 class="card-header owner-name">Name : {{owner.name}}</h5>
+      <div class="card-body p_details ">
+        <h5 class="card-title">phone number : {{owner.phone_number}}</h5>
+        <h5 class="card-title">city : {{owner.city}}</h5>
+        <h5 class="card-title">address : {{owner.address}}</h5>
+        <!-- <h5 class="card-title">id : {{owner.id}}</h5> -->
+        <a href="/book_spot/{{owner.id}}" class="btn btn-primary">Book Spot</a>
+      </div>
+    </div>
+  <!-- </div> -->
+  
+  {%endfor%}
+</div>
+</section>
+
+
+
+
+<div class="pslot">
+{% for na in notaval%}
+
+  <div class="container my-4 ">
+    <div class="card border-5">
+      <h5 class="card-header">Name : {{na.name}}</h5>
+      <div class="card-body">
+        <h5 class="card-title">phone number : {{na.phone_number}}</h5>
+        <h5 class="card-title">city : {{na.city}}</h5>
+        <h5 class="card-title">address : {{na.address}}</h5>
+        <h5 class="card-title">id : {{na.id}}</h5>
+        <h3 style= "text-align: center;">all slots full</h3>
+      </div>
+    </div>
+  </div>
+
+  {%endfor%}
+</div>
+
+
+
+<div class="request_accept">
+  {%for accept in acceptor%}
+
+  
+  <h2>Your request is accepted by {{accept.owner}}</h2>
+  {%endfor%}
+
+  {% else %}
+  <a id="createProfile" href="/create_profile"><button>Create Profile</button></a>
+  {% endif %}
+
+</div>
+</div>
+{% endif %}
+{% endfor %}
+{% endblock body %}
+
+{%block search%}
+{% for ut in type %}
+{% if ut.usertype != 'O' %}
+  <!-- <form class="d-flex">
+      <input class="form-control me-2" name='searched'  placeholder="Search" aria-label="Search">
+      <button href='/main'>search</button>
+  </div> -->
+  <a href="/profile"><button class="customer_Profile"> <i class="fa fa-user"></i></button></a>
+
+  <!-- <form>
+    <div class="input-group">
+        <input name="q" type="text" placeholder="Search" class="form-control form-control-lg" />
+        <div class="input-group-append">
+            <button class="btn btn-dark btn-lg">Search</button>
+        </div>
+    </div>
+</form> -->
+{%endif%}
+{%endfor%}
+{%endblock search%}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title%} contactUs page {%endblock title%}
+{% load static %}
+{%block body%} 
+
+<link rel="stylesheet" href="{% static '/css/contactUs.css'%}" />
+<!-- Contact-Us section  -->
+<section class="contactUs d-flex flex-column justify-content-center align-items-center pb-5 ">
+  <h1 class="mb-4 con_head">Contact-Us</h1>
+  <div class="container cont-container w-100% justify-content-center align-items-center mx-auto">
+     <form method="post" autocomplete="off" name="google-sheet" class="w-50 d-flex justify-content-center align-item-center mx-auto">
+         <div class="row">
+           <div class="form-floating mb-3">
+             <input type="text" class="form-control input_con" id="floatingInput" placeholder="name@example.com"  name="FirstName"/>
+             <label for="floatingInput" class="label_con">First Name</label>
+           </div>
+           <div class="form-floating mb-3">
+             <input type="text" class="form-control input_con" id="floatingInput" placeholder="name@example.com"  name="LastName"/>
+             <label for="floatingInput" class="label_con">Last Name</label>
+           </div>
+           <div class="form-floating mb-3">
+             <input type="email" class="form-control input_con" id="floatingInput" placeholder="name@example.com"  name="Email"/>
+             <label for="floatingInput" class="label_con">Email address</label>
+           </div>
+           <div class="form-floating">
+             <textarea class="form-control input_con" placeholder="Leave a comment here" id="floatingTextarea" name="Comments"></textarea>
+             <label for="floatingTextarea" class="label_con">Comments</label>
+           </div>
+           <div class="mb-3 btn_div">
+ 
+             <button type="submit" name="submit" class="btn btn-primary btnSubmit btn-block" >Submit</button>
+             
+           </div>
+         </div>
+       </form>
+   </div>
+ </section>
+ 
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbw3KDQquaB9TVR2m06_gDOpg8ldLd_NttBQfP_zTIRxhqXFZh9WvsW0Yuy-WVhuiEL3/exec'
+    const form = document.forms['google-sheet']
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => alert("Thanks for Contacting us..! We Will Contact You Soon...")) 
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+
+
+
+
+
+
+
+
+{%endblock body%}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}book spot{% endblock title %}
+
+{% block body %}
+
+{%for owner in book_owner%}
+<h2>Owner Name : {{owner.name}}</h2>
+<form action="/book_spot/{{owner.id}}" method="post">
+{% csrf_token %}
+{{bookform.as_p}}
+
+{% comment %} <button type="submit" name="submit" class="btn btn-primary btnSubmit btn-block" >Submit</button> {% endcomment %}
+<input type="submit" class="btn btn-success">
+</form>
+{%endfor%}
+
+{% endblock body %}

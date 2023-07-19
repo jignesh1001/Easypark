@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}create profile{% endblock title %}
+{% load static%}
+{% block body %}
+<link rel="stylesheet" href=" {% static '/css/crepro.css' %} ">
+<div class="container my-5">
+<div class="text-center profile_con  card shadow">
+<form action="/create_profile" method='POST'>
+{% csrf_token %}
+{{form.as_p}}
+{% comment %} <input type="submit" placeholder='submit'> {% endcomment %}
+<input type="submit" placeholder='submit'>
+{% comment %} <input type="submit" placeholder='submit'> {% endcomment %}
+</form>
+</div>
+</div>
+{% endblock body %}

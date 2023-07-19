@@ -1,0 +1,19 @@
+
+.background {
+   height: 548px;
+   
+  
+   left: 50%;
+   top: 53%;
+   width: 434px;
+}
+form {
+    height: 668px;
+    width: 468px;
+   /* background-color: rgba(255,255,255,0.13); */
+   position: absolute;
+   transform: translate(-50%,-50%);
+   top: 53%;
+   left: 50%;
+ 
+}

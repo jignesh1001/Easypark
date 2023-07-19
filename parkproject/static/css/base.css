@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.register-div {
+  display: flex !important;
+  justify-content: flex-end !important;
+}
+
+nav{
+  background-color: #353b48 !important;
+  opacity: 0.9;
+  
+}
+.bg-dark{
+ 
+  padding: 5px;
+}
+.nav_btn {
+  margin: 0px 10px;
+ 
+}
+
+.nav_a,.navbar-brand {
+  font-size: 1.3rem;
+  text-decoration: none;
+  color: rgb(131, 125, 125);
+  text-transform: capitalize;
+}
+.nav_a:hover,.navbar-brand:hover{
+  color: rgb(255 255 255 / 72%);
+  text-shadow: 3px 2px 3px rgb(255 255 255 / 20%);
+}
+
+footer{
+  background-color: #353b48;
+}
+

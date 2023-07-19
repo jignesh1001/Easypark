@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Mukta:wght@400;800&display=swap");
+body {
+  font-family: "Roboto", sans-serif;
+}
+nav #home{
+  color: white;
+}
+
+#logout{
+ 
+  visibility: hidden !important;
+
+}
+footer{
+  width: 100%;
+}
+
+
+/* owner  account accepted customer container  */
+.customer-request {
+  background-color: brown;
+}
+.acceptCard_container{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+
+
+/* owner account request for customer  */
+.book-slot {
+  background-color: cadetblue;
+}
+
+
+
+/* customer  account search location section */
+.customer_div {
+  background-image: url(../images/bg/sbg.jpg);
+  font-family: 'Libre Baskerville', serif;
+}
+.c-h1 {
+  position: relative;
+  bottom: 10%;
+  right: 45%;
+  text-transform: capitalize;
+  color: black;
+}
+.input-group {
+  position: relative;
+  background: white;
+    border-radius: 9px;
+ 
+  align-items: center;
+  width: 50vw;
+  box-shadow: 5px 6px 45px -2px rgb(0 0 0 / 86%);
+  display: flex;
+
+  outline: none;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.search_btn{
+  position: relative;
+    z-index: 2;
+    padding: 11px;
+    border-radius: 0px 10px 10px 0px;
+    background-color: #ff3f13;
+    border: none;
+}
+.fa-map-marker{
+  position: relative;
+    z-index: 2;
+    padding: 10px;
+    color: #ff3f13;
+    border: none;
+    font-size: 2rem;
+}
+
+
+/* customer account =parking spot card layout */
+.parking_slot{
+  background-color: #d8d8d8;
+}
+.card-Container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  /* background: #eae8e8; */
+  padding: 60px 0px;
+  width: 80%;
+  margin: auto;
+}
+.card {
+  background: #dedede49;
+  color: black;
+  width: 262px;
+  border-radius: 15px;
+  display: flex;
+  margin: 30px 52px;
+  height: 336px;
+  flex-direction: column;
+  align-items: center;
+  border: 7px solid rgb(238, 9, 9) !important;
+}
+.card:hover{
+  box-shadow: -10px 0px 13px -7px #252525, 10px 0px 13px -7px #000000,
+  5px 5px 15px 5px rgb(0 0 0 / 0%);
+ 
+}
+
+/* .card:hover{
+  border: 2px solid rgb(185, 157, 252);
+  background: rgb(180, 196, 41);
+  width: 18vw;
+  display: flex;
+  margin: 30px 52px;
+  height: 350px;
+  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgb(0 0 0 / 0%);
+} */
+.card > .p_details {
+  color: black;
+  flex-direction: column;
+  display: flex;
+  text-transform: capitalize;
+}
+
+/* owner account add slot for parking  */
+.box > img {
+  height: 100vh;
+  width: 100vw;
+  z-index: -1;
+  position: absolute;
+  margin-top: -30px;
+}
+.owner-inp {
+  background-color: #ffffff8a;
+}
+
+
+
+
+/* .owner-card{
+  
+  margin: 6% 4% 0% 4%;
+  padding: 1rem 1rem;
+  flex-wrap: wrap;
+} */
+.owner_card_container{
+  display: inline-flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  justify-items: stretch;
+  flex-wrap: wrap;
+  width: 85%;
+}
+/* .spot_div{
+  margin: 20px auto;
+} */
+

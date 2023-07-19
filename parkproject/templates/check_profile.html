@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{%load static%}
+{% block title %}profile{% endblock title %}
+
+{% block body %}
+<link rel="stylesheet" href="{% static 'css/check_profile.css'%}">
+
+<div class="container my-4 body-con ">
+<div class="text-center card shadow profile_div">
+{% for item in data  %}
+<h4>name:       {{item.user}}</h4>
+<h4>phone:      {{item.phone}}</h4>
+<h4>email:      {{item.email}}</h4>
+<h4>address:    {{item.address}}</h4>
+</div>
+{% endfor %}
+</div>
+{% endblock body %}

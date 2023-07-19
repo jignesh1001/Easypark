@@ -1,0 +1,38 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+body{
+    background-image: url(../images/owner/bg3.jpeg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100vw 100vh;
+    background-attachment: fixed;
+ }
+
+ .body-con {
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    text-transform: capitalize;
+    height: 100vh;
+}
+.profile_div{
+    background: #1c1c1c7a;
+    width: 30vw;
+    height: 84vh;
+    align-items: baseline;
+    display: flex;
+    padding: 50px 40px 50px 40px;
+    border: 1px solid;
+    justify-content: flex-start;
+}
+.profile_div>.h2 {
+    font-size: 1.2rem !important;
+    position: relative;
+    margin: 10px 20px 10px 10px;
+}
