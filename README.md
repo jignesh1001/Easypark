@@ -12,7 +12,7 @@ Welcome to the EasyPark GitHub repository! EasyPark is a user-friendly parking a
 ## Getting Started
 
 1. Clone the repository: `git clone https://github.com/jignesh1001/easypark.git`
-2. Navigate to the project directory: `cd easypark`
+2. Navigate to the project directory.
 3. Create a virtual environment: `python -m venv venv`
 4. Activate the virtual environment:
    - On Windows: `venv\Scripts\activate`
