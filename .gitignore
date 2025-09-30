@@ -1,3 +1,61 @@
-.venv
+myvenv
 parkproject/static/images
 parkproject/static/video
+
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment (yours is named myenv)
+myenv/
+.venv/
+venv/
+ENV/
+env/
+
+# Django stuff
+*.log
+*.pot
+*.pyc
+db.sqlite3
+db.sqlite3-journal
+
+# Media & static (generated files, not source)
+media/
+staticfiles/
+static/
+
+# Local settings (if you create them separately)
+settings_local.py
+
+# IDE & editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Coverage & test reports
+htmlcov/
+.tox/
+.coverage
+coverage.xml
+*.cover
+*.py,cover
+.pytest_cache/
+
+# Pipenv / Poetry (if you ever use them)
+Pipfile.lock
+poetry.lock
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Other temporary files
+*.bak
+*.tmp
