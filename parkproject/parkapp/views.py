@@ -60,6 +60,7 @@ def signup(request):
                 user= authenticate(username=name,password=pass1)
                 dj_login(request,user)
                 return redirect('/usertype')
+            
         if flag == 'R':
             return HttpResponse('This Username already exists. Choose a different username')
         else:
@@ -164,10 +165,9 @@ def usertype(request):
         return redirect('/main')
 
 def crepro(request):
-
     if request.method == 'GET':
-        foram = CUSTOMERForm()
-        return render(request,'crepro.html',context={'form':foram})
+        form = CUSTOMERForm()
+        return render(request,'crepro.html',context={'form':form})
     else:
         form = CUSTOMERForm(request.POST)
         if form.is_valid(): 
