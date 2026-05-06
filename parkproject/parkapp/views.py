@@ -41,42 +41,45 @@ def login(request):
             # return redirect('/login')
 
 def signup(request):
-    flag = 'G'
-    if request.method=='GET':
-        return render(request,'signup.html')
+    if request.method == 'GET':
+        return render(request, 'signup.html')
     else:
         name = request.POST.get('user')
         email = request.POST.get('email')
         pass1 = request.POST.get('password1')
         pass2 = request.POST.get('password2')
-        all_obj = User.objects.all()
-        for obj in all_obj:
-            if str(obj.username) == name:
-                messages.error(request,'This Username already exists. Choose a different username')
-                flag = 'R'
-            if pass1 == pass2:
-                myuser = User.objects.create_user(username=name,email=email,password=pass1)
-                myuser.save()
-                user= authenticate(username=name,password=pass1)
-                dj_login(request,user)
-                return redirect('/usertype')
-            
-        if flag == 'R':
-            return HttpResponse('This Username already exists. Choose a different username')
+        # Check if username already exists
+        if User.objects.filter(username=name).exists():
+            messages.error(request, 'This Username already exists. Choose a different username')
+            return render(request, 'signup.html')
+        # Check if passwords match
+        if pass1 != pass2:
+            messages.error(request, 'Passwords do not match')
+            return render(request, 'signup.html')
+        # Create user
+        myuser = User.objects.create_user(username=name, email=email, password=pass1)
+        myuser.save()
+        # Log in the user
+        user = authenticate(username=name, password=pass1)
+        if user is not None:
+            dj_login(request, user)
+            return redirect('/usertype')
         else:
-            return render(request,'signup.html')
+            # This should not happen, but just in case
+            messages.error(request, 'Unable to log in, please try again.')
+            return render(request, 'signup.html')
 
 @login_required(login_url='/login')
 def main(request):
     flag = 'F'
-    b_flag = 'T'
+    b_flag = 'F'
     for item in CUSTOMER.objects.all():
         if item.user==request.user:
             flag='T'
             break
 
     for book in BOOK.objects.all():
-        if book.owner == request.user:
+        if book.owner == request.user.username:
             b_flag = 'T'
             break
 
@@ -112,16 +115,16 @@ def main(request):
 
             # For Booking Cards
             if b_flag == 'T':
-                allcustomers = BOOK.objects.filter(owner = request.user,bool_value=False)
-                allconcustomers = BOOK.objects.filter(owner = request.user,bool_value=True)
+                allcustomers = BOOK.objects.filter(owner = request.user.username,bool_value=False)
+                allconcustomers = BOOK.objects.filter(owner = request.user.username,bool_value=True)
             
 
 
             # for owner cards
-            selfspots = OWNER.objects.filter(name = request.user)
+            selfspots = OWNER.objects.filter(name = request.user.username)
 
             #For Booked Customers
-            booked_customers = BOOK.objects.filter(bool_value=True,customer=request.user)
+            booked_customers = BOOK.objects.filter(bool_value=True,customer=request.user.username)
                 
 
 
@@ -134,16 +137,16 @@ def main(request):
 
 def addinfo(request):
     info = request.POST
-    name = request.user
+    name = request.user.username
     no_of_slots = info.get('no_of_slots')
     phone_number=info.get('phone')
     city=info.get('city')
     address=info.get('address')
-    # prices=info.grt('prices')
-    if name == "" or phone_number=="" or city=="" or address=="" :
+    prices=info.get('prices')
+    if name == "" or phone_number=="" or city=="" or address=="" or prices == "":
         messages.error(request,'no fields can be empty')
     else:
-        owner = OWNER(name=name,phone_number=phone_number,city=city,address=address,no_of_slots=no_of_slots,)
+        owner = OWNER(name=name,phone_number=phone_number,city=city,address=address,no_of_slots=no_of_slots, prices=prices)
         owner.save()
     return redirect('/main')
 
@@ -194,16 +197,15 @@ def book_spot(request,id):
         all_obj = BOOK.objects.filter(key_num = id)
         for obj in all_obj:
             a = obj.customer
-            b = request.user
-            print(str(b))
-            if a == str(b):
+            b = request.user.username
+            if a == b:
                 messages.error(request,"Can't book the same slot again")
                 return redirect('/main')
         bookform = BOOKForm()
         book_id = id
-        owner = OWNER.objects.filter(id=book_id)
-        
-        customer = request.user
+        owner = OWNER.objects.get(id=book_id)
+
+        customer = request.user.username
         return render(request,'book.html',context={'bookform':bookform,'book_owner':owner,'book_customer':customer})
     else:
         form = BOOKForm(request.POST)
@@ -212,11 +214,9 @@ def book_spot(request,id):
         if form.is_valid():
             book_obj = form.save(commit=False)
             book_id = id
-            owner = OWNER.objects.filter(id=book_id)
-            for o in owner:
-                book_obj.owner = o.name
-                book_obj.spot = o.address
-            book_obj.customer = request.user
+            book_obj.owner = owner.name
+            book_obj.spot = owner.address
+            book_obj.customer = request.user.username
             book_obj.key_num = book_id
             
 

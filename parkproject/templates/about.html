@@ -1,9 +1,9 @@
 {% extends 'base.html' %} 
 {% load static %} 
-{% block title%} about page{%endblock title%}
- {%block body%}
-<link rel="stylesheet" href="{% static '/css/about.css'%}" />
-<link rel="stylesheet" href="{% static '/css/index.css'%}" />
+{% block title %} about page{% endblock title %}
+{% block body %}
+<link rel="stylesheet" href="{% static '/css/about.css' %}" />
+<link rel="stylesheet" href="{% static '/css/index.css' %}" />
 
 
 
@@ -12,7 +12,7 @@
 <section class="our_Vison shadow">
   <div class="Grid Grid--gutterHlg u-alignItemsCenter  vison_box">
     <div class="Grid-cell u-md-size1of3 u-marginBxxlg vison_img">
-      <img src="{% static 'images/bg/bigger_picture.jpg'%}">
+      <img src="{% static '/images/bg/bigger_picture.jpg' %}">
     </div>
     <div class="Grid-cell u-md-size2of3 u-marginBxxlg Teaser--halfImg vision_det">
       <h2 class="u-colorPink">We see the bigger picture</h2>
@@ -173,7 +173,7 @@ c0.8-0.8,1.7-1.6,2.4-2.4c3.6-4,6.5-8.6,8.3-13.7C91,61.1,92,56.2,92,51.1C92,27.8,
           muted
           plays-inline
         >
-          <source src="{% static '/video/about.mp4'%}" type="video/mp4" />
+          <source src="{% static '/video/about.mp4' %}" type="video/mp4" />
         </video>
       </div>
 
@@ -202,4 +202,4 @@ c0.8-0.8,1.7-1.6,2.4-2.4c3.6-4,6.5-8.6,8.3-13.7C91,61.1,92,56.2,92,51.1C92,27.8,
 
 <!--section services  -->
 
-{%endblock body%}
+{% endblock body %}

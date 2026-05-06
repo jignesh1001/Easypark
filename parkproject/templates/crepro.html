@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block title %}create profile{% endblock title %}
-{% load static%}
+{% load static %}
 {% block body %}
-<link rel="stylesheet" href=" {% static '/css/crepro.css' %} ">
+<link rel="stylesheet" href="{% static '/css/crepro.css' %}">
 <div class="container my-5">
 <div class="text-center profile_con  card shadow">
 <form action="/create_profile" method='POST'>

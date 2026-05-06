@@ -10,7 +10,7 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="{% static '/css/base.css'%}">
+    <link rel="stylesheet" href="{% static '/css/base.css' %}">
     
     <title>{% block title %}{% endblock title %}</title>
   </head>
@@ -32,7 +32,7 @@
           >
             <span class="navbar-toggler-icon"></span>
           </button> -->
-          <div class="    collapse navbar-collapse" id="navbarSupportedContent" >
+          <div class="collapse navbar-collapse" id="navbarSupportedContent" >
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0 nav-ul ">
            
               <li class="nav-item nav-btn">   
@@ -46,8 +46,7 @@
              </li>
             
             </ul>
-          </div>
-          <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent" > -->
+
             <ul class=" d-flex flex-row w-100% mx-auto justify-content-center px-0 mb-0">
 
               {% if user.is_authenticated %}
@@ -63,7 +62,7 @@
               </li>
               {% endif %}
             </ul>
-          <!-- </div> -->
+          </div>
             
 
              <button
@@ -80,7 +79,7 @@
            
 
             {%block search%} {%endblock search%}
-          <!-- </div> -->
+          </div>
           
         
       </div>
